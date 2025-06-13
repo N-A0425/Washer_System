@@ -131,6 +131,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ModeSelect.h" />
+    <ClInclude Include="ModeStrategy.h" />
+    <ClInclude Include="Rinse.h" />
+    <ClInclude Include="Spin.h" />
+    <ClInclude Include="Wash.h" />
     <ClInclude Include="Washer.h" />
     <ClInclude Include="WashingTub.h" />
     <ClInclude Include="WeightSensor.h" />

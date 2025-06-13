@@ -38,6 +38,10 @@ void ModeSelect::select() {
 		}
 	}
 	cout << "\n\n選択したモード: " << modes[currentModeIndex] << endl;
+
+	if (currentModeIndex = 0) {
+		// その時の場合分けを出力	
+	}
 }
 
 string ModeSelect::getCurrentMode() const {

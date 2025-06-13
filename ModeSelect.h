@@ -10,7 +10,7 @@
 class ModeSelect {
 private:
 	std::vector<std::string> modes;
-	int blanks;
+	int blanks = 0;
 	int currentModeIndex;
 
 public:

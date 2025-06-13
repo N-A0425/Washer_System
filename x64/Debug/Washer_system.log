@@ -1,6 +1,4 @@
-﻿  ModeSelect.cpp
-C:\Users\中村 昭斗\source\repos\Washer_system\Washer_system\ModeSelect.cpp(30,21): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-  Washer.cpp
+﻿  Washer.cpp
   main.cpp
   コードを生成中...
   Washer_system.vcxproj -> C:\Users\中村 昭斗\source\repos\Washer_system\x64\Debug\Washer_system.exe
