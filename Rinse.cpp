@@ -5,7 +5,9 @@
 
 using namespace std;
 
-Rinse::Rinse(const ModeStrategy* strategy) : currentWeight(0), rinse_time(0), rinse_water(0), strategy(nullptr) {}
+Rinse::Rinse() : currentWeight(0), rinse_time(0), rinse_water(0), strategy(nullptr) {}
+
+Rinse::Rinse(const ModeStrategy* strategy) : currentWeight(0), rinse_time(0), rinse_water(0), strategy(strategy) {}
 
 int Rinse::rinse_time_calc() {
 	int rinse_time_coefficient = strategy->getRinseTimeCoefficient();

@@ -5,7 +5,9 @@
 
 using namespace std;  
 
-Wash::Wash(const ModeStrategy* strategy) : currentWeight(0), wash_time(0), wash_water(0), strategy(nullptr) {}
+Wash::Wash() : currentWeight(0), wash_time(0), wash_water(0), strategy(nullptr) {}
+
+Wash::Wash(const ModeStrategy* strategy) : currentWeight(0), wash_time(0), wash_water(0), strategy(strategy) {}
 
 int Wash::wash_time_calc() {  
     int wash_time_coefficient = strategy->getWashTimeCoefficient();
