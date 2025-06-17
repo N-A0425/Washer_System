@@ -1,26 +1,50 @@
 #include "Washer.h"
-
 #include <iostream>
+#include "Wash.h"
+#include "Rinse.h"
+#include "Spin.h"
+#include "ModeStrategy.h"
+#include "ModeSelect.h"
 
-Washer::Washer() : weightSensor(), modeSelect(), initialWeight(0) {} // 初期の重量を0に設定
+using namespace std;
+
+Washer::Washer()
+    : initialWeight(0)
+{
+}
 
 void Washer::initializeWeight() {
-    weightSensor.setWeight(); // 重量計測メソッドを使用
-    initialWeight = weightSensor.getCurrentWeight(); // 初期の重量を保存
-    std::cout << "初期の洗濯物の重量: " << initialWeight << "kg\n";
+    weightSensor.setWeight();
+    initialWeight = weightSensor.getCurrentWeight();
+    cout << "計測された重量: " << initialWeight << " kg" << endl;
 }
 
 void Washer::setModeStrategy(std::unique_ptr<ModeStrategy> strategy) {
     modeStrategy = std::move(strategy);
 }
 
-
 void Washer::run() {
-    initializeWeight(); // 初期重量を設定
-    modeSelect.select(); // モードを選択
-    std::cout << "選ばれたモードで洗濯を開始します。モード: " << modeSelect.getCurrentMode()
-        << ", 重量: " << initialWeight << "kg\n";
-    //Wash();
-    //Rinse();
-    //Spin();
+    // 重量計測
+    initializeWeight();
+
+    // モード選択
+    modeSelect.select();
+
+    // 洗い
+    Wash wash;
+    wash.setCurrentWeight(initialWeight);
+    wash.wash_time_calc();
+    wash.wash_water_calc();
+
+    // すすぎ
+    Rinse rinse;
+    rinse.setCurrentWeight(initialWeight);
+    rinse.rinse_time_calc();
+    rinse.rinse_water_calc();
+
+    // 脱水
+    Spin spin;
+    spin.setCurrentWeight(initialWeight);
+    spin.spin_time_calc();
+    spin.spin_mode_calc();
 }

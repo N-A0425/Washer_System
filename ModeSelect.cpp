@@ -39,11 +39,35 @@ void ModeSelect::select() {
 	}
 	cout << "\n\n選択したモード: " << modes[currentModeIndex] << endl;
 
-	if (currentModeIndex = 0) {
-		// その時の場合分けを出力	
+	if (modes[currentModeIndex] == "標準") {
+		strategy = std::make_unique<StandardMode>();
 	}
+	else if (modes[currentModeIndex] == "おしゃれ着") {
+		strategy = std::make_unique<FashionableClothMode>();
+	}
+	else if (modes[currentModeIndex] == "デリケート") {
+		strategy = std::make_unique<DelicateMode>();
+	}
+	else if (modes[currentModeIndex] == "部屋干し") {
+		strategy = std::make_unique<RoomDryingMode>();
+	}
+	else if (modes[currentModeIndex] == "お急ぎ") {
+		strategy = std::make_unique<QuickMode>();
+	}
+	else if (modes[currentModeIndex] == "エコ") {
+		strategy = std::make_unique<EcoMode>();
+	}
+	else if (modes[currentModeIndex] == "すすぎ、脱水") {
+		strategy = std::make_unique<RinseAndDeciccationMode>();
+	}
+	else {
+		strategy = std::make_unique<CustomMode>();
+	}
+
+	strategy->applyWash(wash, currentWeight);
 }
 
 string ModeSelect::getCurrentMode() const {
 	return modes[currentModeIndex];
 }
+

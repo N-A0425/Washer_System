@@ -1,23 +1,34 @@
-#ifndef MODESELECT_H
-#define MODESELECT_H
+#ifndef MODESELECT_H  
+#define MODESELECT_H  
 
-#include <vector>
-#include <string>
+#include <vector>  
+#include <string>  
 
-#define LimChar 7
-#define FullChar 2
+#include "WashingTub.h" 
+#include "ModeStrategy.h"  
+#include "Wash.h"  
+#include "Rinse.h"  
+#include "Spin.h"  
 
-class ModeSelect {
-private:
-	std::vector<std::string> modes;
-	int blanks = 0;
-	int currentModeIndex;
+#define LimChar 7  
+#define FullChar 2  
 
-public:
-	ModeSelect();
-	void select(); // モードを選択する
-	std::string getCurrentMode() const;
+class ModeSelect {  
+private:  
+	Wash wash;  
+	Rinse rinse;  
+	Spin spin;  
+	std::vector<std::string> modes;  
+	std::unique_ptr<ModeStrategy> strategy;  
+	int blanks = 0;  
+	int currentModeIndex;  
+	int currentWeight;
 
-};
+public:  
+	ModeSelect();  
+	void select(); // モードを選択する  
+	std::string getCurrentMode() const;  
+
+};  
 
 #endif // MODESELECT_H
