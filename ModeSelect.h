@@ -26,7 +26,8 @@ private:
 
 public:  
 	ModeSelect();  
-	void select(); // モードを選択する  
+	void select(); // モードを選択する
+	std::unique_ptr<ModeStrategy> getStrategy();
 	std::string getCurrentMode() const;  
 
 };  

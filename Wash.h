@@ -3,24 +3,22 @@
 
 #include "ModeStrategy.h"
 
-class Wash {
-private:
-    int currentWeight;
-    int wash_time;
-    int wash_water;
-	int wash_time_coefficient;
-	int wash_water_coefficient;
-	int rinse_time_coefficient;
-	int rinse_water_coefficient;
-	int spin_time_coefficient;
-    int out;
+class ModeStrategy;
 
-public:
+class Wash {  
+private:  
+    int currentWeight;  
+    int wash_time;  
+    int wash_water;  
+    const ModeStrategy* strategy;
+
+public:  
     Wash();
+    Wash(const ModeStrategy* strategy);  
     void setCurrentWeight(int currentWeight);
-    int getCurrentWeight() const;
-    int wash_time_calc();
+    int wash_time_calc();  
     int wash_water_calc();
-};
+    int getCurrentWeight() const;  
+};  
 
 #endif // WASH_H
