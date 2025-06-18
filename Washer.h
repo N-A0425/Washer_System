@@ -5,6 +5,7 @@
 #include "ModeSelect.h"
 #include "ModeStrategy.h"
 #include "Wash.h"
+#include "Display.h"
 
 
 #include <memory>
@@ -15,6 +16,7 @@ private:
     ModeSelect modeSelect;
     int initialWeight; // 初期の重量を保持
     std::unique_ptr<ModeStrategy> modeStrategy;
+	Display display; // ディスプレイオブジェクト
 
 public:
     Washer();

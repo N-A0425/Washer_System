@@ -10,9 +10,12 @@ ModeSelect::ModeSelect() : currentModeIndex(0), strategy(nullptr) {
 
 void ModeSelect::select() {
     char input;
-    cout << "現在のモード: " << modes[currentModeIndex] << endl;
-    cout << "矢印キー(↑や↓)でモードを選び、Enterキーで確定します。\n";
-    cout << "\r現在選択されているモード: " << modes[0];
+
+    display.showCurrentMode(modes[currentModeIndex]);
+
+	//display.showSelectMode(modes[currentModeIndex]);
+    
+    
     while (true) {
         input = _getch(); // キーボード入力を非エコーで受け取る
         bool modeChanged = false;
@@ -25,18 +28,17 @@ void ModeSelect::select() {
             modeChanged = true;
         }
         if (modeChanged) {
-            cout << "\r現在選択されているモード: " << modes[currentModeIndex];
-            blanks = LimChar - (modes[currentModeIndex].length() / FullChar);
-            for (int cnt = 0; cnt < blanks; cnt++) {
-                cout << "　"; // 全角スペースを追加
-            }
-            cout.flush();
+
+			display.showCurrentMode(modes[currentModeIndex]);
+            
         }
         if (input == '\r') { // Enterキー
             break;
         }
     }
-    cout << "\n\n選択したモード: " << modes[currentModeIndex] << endl;
+
+	display.showDecisionMode(modes[currentModeIndex]);
+    
 }
 
 std::unique_ptr<ModeStrategy> ModeSelect::getStrategy() {

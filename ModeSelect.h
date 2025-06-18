@@ -9,9 +9,7 @@
 #include "Wash.h"  
 #include "Rinse.h"  
 #include "Spin.h"  
-
-#define LimChar 7  
-#define FullChar 2  
+#include "Display.h" 
 
 class ModeSelect {  
 private:  
@@ -20,9 +18,9 @@ private:
 	Spin spin;  
 	std::vector<std::string> modes;  
 	std::unique_ptr<ModeStrategy> strategy;  
-	int blanks = 0;  
 	int currentModeIndex;  
 	int currentWeight;
+	Display display; // ディスプレイオブジェクト
 
 public:  
 	ModeSelect();  

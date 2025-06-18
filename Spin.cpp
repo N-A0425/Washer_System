@@ -4,15 +4,19 @@
 
 using namespace std;
 
-Spin::Spin() : currentWeight(0), spin_time(0), spin_mode("標準"), strategy(nullptr) {}
+Spin::Spin()
+    : currentWeight(0), spin_time(0), spin_mode("標準"), 
+      spin_time_ratio(0.15), strategy(nullptr) {}
 
-Spin::Spin(const ModeStrategy* strategy) : currentWeight(0), spin_time(0), spin_mode("標準"), strategy(strategy) {}
+Spin::Spin(const ModeStrategy* strategy)
+    : currentWeight(0), spin_time(0), spin_mode("標準"),
+      spin_time_ratio(0.15), strategy(strategy) {}
 
 int Spin::spin_time_calc() {
 	int spin_time_coefficient = strategy->getSpinTimeCoefficient(); // モードに応じた脱水時間係数を取得
 	int total_time = ((currentWeight - 1) * 10 + 25); // 基本の脱水時間計算
 	spin_time = total_time * spin_time_ratio * spin_time_coefficient; // 脱水時間の計算
-    cout << "[Spin] 脱水時間：約 " << spin_time << " 分" << endl;
+    
     return spin_time;
 }
 
@@ -22,7 +26,7 @@ std::string Spin::spin_mode_calc() {
     } else {
         spin_mode = "標準";
     }
-    cout << "[Spin] 脱水モード: " << spin_mode << endl;
+
     return spin_mode;
 }
 

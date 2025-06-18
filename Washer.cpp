@@ -10,7 +10,7 @@ Washer::Washer()
 void Washer::initializeWeight() {
     weightSensor.setWeight();
     initialWeight = weightSensor.getCurrentWeight();
-    cout << "計測された重量: " << weightSensor.getCurrentWeight() << " kg" << endl;
+
 }
 
 void Washer::setModeStrategy(std::unique_ptr<ModeStrategy> strategy) {
@@ -21,30 +21,48 @@ void Washer::run() {
     // 重量計測  
     initializeWeight();
 
+    display.showSelectMode(modeSelect.getCurrentMode()); // 選択されたモードを表示
+    display.showCurrentWeight(weightSensor.getCurrentWeight());
+
     // モード選択  
     modeSelect.select();
+    
 
     // 選ばれたモード戦略の取得
     auto strategy = modeSelect.getStrategy();
     setModeStrategy(std::move(strategy));
 
+    Wash wash(modeStrategy.get());
+    wash.setCurrentWeight(weightSensor.getCurrentWeight());
+    display.showTotalWater(wash.total_wash_water_aligned()); // 洗い水量を表示
+	display.showTotalTime(wash.total_wash_time_aligned()); // 洗い時間を表示
+    
+
     if (modeStrategy) {
         // 洗い  
-        Wash wash(modeStrategy.get());
-        wash.setCurrentWeight(weightSensor.getCurrentWeight());
-        wash.wash_time_calc();
-        wash.wash_water_calc();
-
+        display.showCurrentProcess("洗い中...");
+        display.showWashWater(wash.wash_water_calc()); // 洗い水量を表示
+		display.showWashTime(wash.wash_time_calc()); // 洗い時間を表示
+		
         // すすぎ
         Rinse rinse(modeStrategy.get());
         rinse.setCurrentWeight(weightSensor.getCurrentWeight());
-        rinse.rinse_time_calc();
-        rinse.rinse_water_calc();
+        display.showCurrentProcess("すすぎ中...");
+        display.showRinseWater(rinse.rinse_water_calc()); // すすぎ水量を表示
+        display.showRinseTime(rinse.rinse_time_calc(), modeStrategy->getRinseCount()); // すすぎ時間を表示
+		
+		
+
 
         // 脱水  
         Spin spin(modeStrategy.get());
         spin.setCurrentWeight(weightSensor.getCurrentWeight());
-        spin.spin_time_calc();
-        spin.spin_mode_calc();
+        display.showCurrentProcess("脱水中...");
+        display.showSpinMode(spin.spin_mode_calc()); // 脱水モードを表示
+		display.showSpinTime(spin.spin_time_calc()); // 脱水時間を表示
+		
+
     }
+
+
 }

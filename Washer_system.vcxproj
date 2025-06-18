@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Display.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModeSelect.cpp" />
     <ClCompile Include="Rinse.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="WeightSensor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Display.h" />
     <ClInclude Include="ModeSelect.h" />
     <ClInclude Include="ModeStrategy.h" />
     <ClInclude Include="Rinse.h" />

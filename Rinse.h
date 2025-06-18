@@ -2,6 +2,7 @@
 #define RINSE_H
 
 #include "ModeStrategy.h"
+#include "Display.h"
 
 class ModeStrategy;
 
@@ -10,9 +11,10 @@ private:
 	int currentWeight;
 	int rinse_time;
 	int rinse_water;
-	double rinse_time_ratio = 0.2;
-	double rinse_water_ratio = 0.2;
+	double rinse_time_ratio;
+	double rinse_water_ratio;
 	const ModeStrategy* strategy;
+	Display display; // ディスプレイオブジェクト
 
 public:
 	Rinse();
