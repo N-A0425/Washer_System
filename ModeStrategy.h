@@ -11,7 +11,7 @@
 class ModeStrategy {
 public:
 	virtual ~ModeStrategy() = default;
-	
+
 	virtual int getWashTimeCoefficient() const = 0;
 	virtual int getWashWaterCoefficient() const = 0;
 	virtual int getRinseTimeCoefficient() const = 0;
