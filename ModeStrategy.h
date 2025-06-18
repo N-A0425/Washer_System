@@ -9,14 +9,15 @@
 #include "Spin.h"
 
 class ModeStrategy {
-public:
+public: 
 	virtual ~ModeStrategy() = default;
 
-	virtual int getWashTimeCoefficient() const = 0;
-	virtual int getWashWaterCoefficient() const = 0;
-	virtual int getRinseTimeCoefficient() const = 0;
-	virtual int getRinseWaterCoefficient() const = 0;
-	virtual int getSpinTimeCoefficient() const = 0;
+	virtual double getWashTimeCoefficient() const = 0;
+	virtual double getWashWaterCoefficient() const = 0;
+	virtual double getRinseTimeCoefficient() const = 0;
+	virtual double getRinseWaterCoefficient() const = 0;
+	virtual double getSpinTimeCoefficient() const = 0;
+	virtual int getRinseCount() const = 0;
 
 	virtual void applyWash(int currentWeight) const = 0;
 	virtual void applyRinse(int currentWeight) const = 0;
@@ -25,31 +26,36 @@ public:
 
 class StandardMode : public ModeStrategy {
 private:
-	int wash_time_coefficient = 1;
-	int wash_water_coefficient = 1;
-	int rinse_time_coefficient = 1;
-	int rinse_water_coefficient = 1;
-	int spin_time_coefficient = 1;
+	double wash_time_coefficient = 1;
+	double wash_water_coefficient = 1;
+	double rinse_time_coefficient = 1;
+	double rinse_water_coefficient = 1;
+	double spin_time_coefficient = 1;
+	int rinse_count = 2;
 
 public:
-	int getWashTimeCoefficient() const override {
+	double getWashTimeCoefficient() const override {
 		return wash_time_coefficient;
 	}
 
-	int getWashWaterCoefficient() const override {
+	double getWashWaterCoefficient() const override {
 		return wash_water_coefficient;
 	}
 
-	int getRinseTimeCoefficient() const override {
+	double getRinseTimeCoefficient() const override {
 		return rinse_time_coefficient;
 	}
 
-	int getRinseWaterCoefficient() const override {
+	double getRinseWaterCoefficient() const override {
 		return rinse_water_coefficient;
 	}
 
-	int getSpinTimeCoefficient() const override {
+	double getSpinTimeCoefficient() const override {
 		return spin_time_coefficient;
+	}
+
+	int getRinseCount() const override {
+		return rinse_count;
 	}
 
 	void applyWash(int currentWeight) const override {}
@@ -60,31 +66,36 @@ public:
 
 class FashionableClothMode : public ModeStrategy {
 private:
-	int wash_time_coefficient = 2;
-	int wash_water_coefficient = 2;
-	int rinse_time_coefficient = 2;
-	int rinse_water_coefficient = 2;
-	int spin_time_coefficient = 2;
+	double wash_time_coefficient = 1.2;
+	double wash_water_coefficient = 1.2;
+	double rinse_time_coefficient = 1;
+	double rinse_water_coefficient = 1;
+	double spin_time_coefficient = 1;
+	int rinse_count = 1;
 
 public:
-	int getWashTimeCoefficient() const override {
+	double getWashTimeCoefficient() const override {
 		return wash_time_coefficient;
 	}
 
-	int getWashWaterCoefficient() const override {
+	double getWashWaterCoefficient() const override {
 		return wash_water_coefficient;
 	}
 
-	int getRinseTimeCoefficient() const override {
+	double getRinseTimeCoefficient() const override {
 		return rinse_time_coefficient;
 	}
 
-	int getRinseWaterCoefficient() const override {
+	double getRinseWaterCoefficient() const override {
 		return rinse_water_coefficient;
 	}
 
-	int getSpinTimeCoefficient() const override {
+	double getSpinTimeCoefficient() const override {
 		return spin_time_coefficient;
+	}
+
+	int getRinseCount() const override {
+		return rinse_count;
 	}
 
 	void applyWash(int currentWeight) const override {}
@@ -95,31 +106,36 @@ public:
 
 class DelicateMode : public ModeStrategy {
 private:
-	int wash_time_coefficient = 3;
-	int wash_water_coefficient = 3;
-	int rinse_time_coefficient = 3;
-	int rinse_water_coefficient = 3;
-	int spin_time_coefficient = 3;
+	double wash_time_coefficient = 1.2;
+	double wash_water_coefficient = 1.2;
+	double rinse_time_coefficient = 1.2;
+	double rinse_water_coefficient = 1.2;
+	double spin_time_coefficient = 1;
+	int rinse_count = 1;
 
 public:
-	int getWashTimeCoefficient() const override {
+	double getWashTimeCoefficient() const override {
 		return wash_time_coefficient;
 	}
 
-	int getWashWaterCoefficient() const override {
+	double getWashWaterCoefficient() const override {
 		return wash_water_coefficient;
 	}
 
-	int getRinseTimeCoefficient() const override {
+	double getRinseTimeCoefficient() const override {
 		return rinse_time_coefficient;
 	}
 
-	int getRinseWaterCoefficient() const override {
+	double getRinseWaterCoefficient() const override {
 		return rinse_water_coefficient;
 	}
 
-	int getSpinTimeCoefficient() const override {
+	double getSpinTimeCoefficient() const override {
 		return spin_time_coefficient;
+	}
+
+	int getRinseCount() const override {
+		return rinse_count;
 	}
 
 	void applyWash(int currentWeight) const override {}
@@ -130,31 +146,36 @@ public:
 
 class RoomDryingMode : public ModeStrategy {
 private:
-	int wash_time_coefficient = 4;
-	int wash_water_coefficient = 4;
-	int rinse_time_coefficient = 4;
-	int rinse_water_coefficient = 4;
-	int spin_time_coefficient = 4;
+	double wash_time_coefficient = 1;
+	double wash_water_coefficient = 1;
+	double rinse_time_coefficient = 1;
+	double rinse_water_coefficient = 1;
+	double spin_time_coefficient = 1;
+	int rinse_count = 2;
 
 public:
-	int getWashTimeCoefficient() const override {
+	double getWashTimeCoefficient() const override {
 		return wash_time_coefficient;
 	}
 
-	int getWashWaterCoefficient() const override {
+	double getWashWaterCoefficient() const override {
 		return wash_water_coefficient;
 	}
 
-	int getRinseTimeCoefficient() const override {
+	double getRinseTimeCoefficient() const override {
 		return rinse_time_coefficient;
 	}
 
-	int getRinseWaterCoefficient() const override {
+	double getRinseWaterCoefficient() const override {
 		return rinse_water_coefficient;
 	}
 
-	int getSpinTimeCoefficient() const override {
+	double getSpinTimeCoefficient() const override {
 		return spin_time_coefficient;
+	}
+
+	int getRinseCount() const override {
+		return rinse_count;
 	}
 
 	void applyWash(int currentWeight) const override {}
@@ -163,68 +184,38 @@ public:
 	int out = 4;
 };
 
-class DringInsideMode : public ModeStrategy {
-private:
-	int wash_time_coefficient = 5;
-	int wash_water_coefficient = 5;
-	int rinse_time_coefficient = 5;
-	int rinse_water_coefficient = 5;
-	int spin_time_coefficient = 5;
-
-public:
-	int getWashTimeCoefficient() const override {
-		return wash_time_coefficient;
-	}
-
-	int getWashWaterCoefficient() const override {
-		return wash_water_coefficient;
-	}
-
-	int getRinseTimeCoefficient() const override {
-		return rinse_time_coefficient;
-	}
-
-	int getRinseWaterCoefficient() const override {
-		return rinse_water_coefficient;
-	}
-
-	int getSpinTimeCoefficient() const override {
-		return spin_time_coefficient;
-	}
-
-	void applyWash(int currentWeight) const override {}
-	void applyRinse(int currentWeight) const override {}
-	void applySpin(int currentWeight) const override {}
-	int out = 5;
-};
-
 class QuickMode : public ModeStrategy {
 private:
-	int wash_time_coefficient = 6;
-	int wash_water_coefficient = 6;
-	int rinse_time_coefficient = 6;
-	int rinse_water_coefficient = 6;
-	int spin_time_coefficient = 6;
+	double wash_time_coefficient = 0.8;
+	double wash_water_coefficient = 1;
+	double rinse_time_coefficient = 0.8;
+	double rinse_water_coefficient = 1;
+	double spin_time_coefficient = 0.8;
+	int rinse_count = 1;
 
 public:
-	int getWashTimeCoefficient() const override {
+	double getWashTimeCoefficient() const override {
 		return wash_time_coefficient;
 	}
 
-	int getWashWaterCoefficient() const override {
+	double getWashWaterCoefficient() const override {
 		return wash_water_coefficient;
 	}
 
-	int getRinseTimeCoefficient() const override {
+	double getRinseTimeCoefficient() const override {
 		return rinse_time_coefficient;
 	}
 
-	int getRinseWaterCoefficient() const override {
+	double getRinseWaterCoefficient() const override {
 		return rinse_water_coefficient;
 	}
 
-	int getSpinTimeCoefficient() const override {
+	double getSpinTimeCoefficient() const override {
 		return spin_time_coefficient;
+	}
+
+	int getRinseCount() const override {
+		return rinse_count;
 	}
 
 	void applyWash(int currentWeight) const override {}
@@ -235,31 +226,36 @@ public:
 
 class EcoMode : public ModeStrategy {
 private:
-	int wash_time_coefficient = 7;
-	int wash_water_coefficient = 7;
-	int rinse_time_coefficient = 7;
-	int rinse_water_coefficient = 7;
-	int spin_time_coefficient = 7;
+	double wash_time_coefficient = 0.9;
+	double wash_water_coefficient = 0.9;
+	double rinse_time_coefficient = 0.9;
+	double rinse_water_coefficient = 0.9;
+	double spin_time_coefficient = 0.9;
+	int rinse_count = 1;
 
 public:
-	int getWashTimeCoefficient() const override {
+	double getWashTimeCoefficient() const override {
 		return wash_time_coefficient;
 	}
 
-	int getWashWaterCoefficient() const override {
+	double getWashWaterCoefficient() const override {
 		return wash_water_coefficient;
 	}
 
-	int getRinseTimeCoefficient() const override {
+	double getRinseTimeCoefficient() const override {
 		return rinse_time_coefficient;
 	}
 
-	int getRinseWaterCoefficient() const override {
+	double getRinseWaterCoefficient() const override {
 		return rinse_water_coefficient;
 	}
 
-	int getSpinTimeCoefficient() const override {
+	double getSpinTimeCoefficient() const override {
 		return spin_time_coefficient;
+	}
+
+	int getRinseCount() const override {
+		return rinse_count;
 	}
 
 	void applyWash(int currentWeight) const override {}
@@ -270,31 +266,36 @@ public:
 
 class RinseAndDeciccationMode : public ModeStrategy {
 private:
-	int wash_time_coefficient = 8;
-	int wash_water_coefficient = 8;
-	int rinse_time_coefficient = 8;
-	int rinse_water_coefficient = 8;
-	int spin_time_coefficient = 8;
+	double wash_time_coefficient = 0;
+	double wash_water_coefficient = 0;
+	double rinse_time_coefficient = 1;
+	double rinse_water_coefficient = 1;
+	double spin_time_coefficient = 1;
+	int rinse_count = 2;
 
 public:
-	int getWashTimeCoefficient() const override {
+	double getWashTimeCoefficient() const override {
 		return wash_time_coefficient;
 	}
 
-	int getWashWaterCoefficient() const override {
+	double getWashWaterCoefficient() const override {
 		return wash_water_coefficient;
 	}
 
-	int getRinseTimeCoefficient() const override {
+	double getRinseTimeCoefficient() const override {
 		return rinse_time_coefficient;
 	}
 
-	int getRinseWaterCoefficient() const override {
+	double getRinseWaterCoefficient() const override {
 		return rinse_water_coefficient;
 	}
 
-	int getSpinTimeCoefficient() const override {
+	double getSpinTimeCoefficient() const override {
 		return spin_time_coefficient;
+	}
+
+	int getRinseCount() const override {
+		return rinse_count;
 	}
 
 	void applyWash(int currentWeight) const override {}
@@ -305,31 +306,36 @@ public:
 
 class CustomMode : public ModeStrategy {
 private:
-	int wash_time_coefficient = 9;
-	int wash_water_coefficient = 9;
-	int rinse_time_coefficient = 9;
-	int rinse_water_coefficient = 9;
-	int spin_time_coefficient = 9;
+	double wash_time_coefficient;
+	double wash_water_coefficient;
+	double rinse_time_coefficient;
+	double rinse_water_coefficient;
+	double spin_time_coefficient;
+	int rinse_count;
 
 public:
-	int getWashTimeCoefficient() const override {
+	double getWashTimeCoefficient() const override {
 		return wash_time_coefficient;
 	}
 
-	int getWashWaterCoefficient() const override {
+	double getWashWaterCoefficient() const override {
 		return wash_water_coefficient;
 	}
 
-	int getRinseTimeCoefficient() const override {
+	double getRinseTimeCoefficient() const override {
 		return rinse_time_coefficient;
 	}
 
-	int getRinseWaterCoefficient() const override {
+	double getRinseWaterCoefficient() const override {
 		return rinse_water_coefficient;
 	}
 
-	int getSpinTimeCoefficient() const override {
+	double getSpinTimeCoefficient() const override {
 		return spin_time_coefficient;
+	}
+
+	int getRinseCount() const override {
+		return rinse_count;
 	}
 
 	void applyWash(int currentWeight) const override {}

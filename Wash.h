@@ -9,7 +9,9 @@ class Wash {
 private:  
     int currentWeight;  
     int wash_time;  
-    int wash_water;  
+    int wash_water;
+    double wash_time_ratio = 0.45;
+    double wash_water_ratio = 0.6;
     const ModeStrategy* strategy;
 
 public:  

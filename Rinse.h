@@ -10,6 +10,8 @@ private:
 	int currentWeight;
 	int rinse_time;
 	int rinse_water;
+	double rinse_time_ratio = 0.2;
+	double rinse_water_ratio = 0.2;
 	const ModeStrategy* strategy;
 
 public:

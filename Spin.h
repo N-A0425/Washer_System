@@ -8,7 +8,9 @@ class ModeStrategy;
 class Spin {
 private:
 	int currentWeight;
-	int Spin_time;
+	int spin_time;
+	double spin_time_ratio = 0.15;
+	int spin_mode_index; // 0: •W€, 1: ‘—•—
 	std::string spin_mode; // charŒ^‚©‚çstringŒ^‚ÖC³
 	const ModeStrategy* strategy;
 
